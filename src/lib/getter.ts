@@ -15,8 +15,8 @@ export const getBooksByKeyword = async (keywords: string) => {
   );
 
   const data = await res.json();
-  const result = await data.items
-  
+  const result = await data.items;
+
   let books: BookProps[] = [];
   result.forEach((bookData: any) => {
     books.push(createBook(bookData));
@@ -33,10 +33,28 @@ const createBook = (book: any) => {
   return {
     id: book.id,
     title: book.volumeInfo.title,
-    author: authors ? authors.join(","): null,
+    author: authors ? authors.join(",") : null,
     price: price ? price.amount : 0,
     publisher: book.volumeInfo.publisher,
     published: book.volumeInfo.publishedDate,
-    image: image ? image.thumbnail : '/vercel.svg'
+    image: image ? image.thumbnail : "/vercel.svg",
   };
+};
+
+export const getBookById = async (bookId: string | null) => {
+  const resp = await fetch(
+    `https://www.googleapis.com/books/v1/volumes/${bookId}`
+  );
+
+  const result = await resp.json();
+
+  return createBook(result);
+};
+
+export const getReviewById = async (bookId: string) => {
+  return await prisma.review.findUnique({
+    where: {
+      id: bookId,
+    },
+  });
 };
