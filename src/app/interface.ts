@@ -5,6 +5,6 @@ export interface BookProps {
   price: number;
   publisher: string;
   image: string;
-  read: Date;
+  read?: Date;
   memo?: string | null;
 }
