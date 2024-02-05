@@ -27,5 +27,15 @@ export const addReview = async (data: FormData) => {
     },
   });
 
-  redirect('/')
+  redirect("/");
+};
+
+export const removeReview = async (data: FormData) => {
+  await prisma.review.delete({
+    where: {
+      id: data.get("id") as string,
+    },
+  });
+
+  redirect("/");
 };

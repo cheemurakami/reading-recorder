@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { addReview } from "@/lib/actions";
+import { addReview, removeReview } from "@/lib/actions";
 
 interface FormType {
   id: string;
@@ -47,6 +47,7 @@ const FormEdit = ({ src: { id, read, memo } }: { src: FormType }) => {
       <button
         type="submit"
         className="bg-red-600 text-white rounded px-4 py-2 mr-2 hover:bg-red-500"
+        formAction={removeReview}
       >
         削除
       </button>
