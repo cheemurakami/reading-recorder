@@ -10,7 +10,7 @@ const EditPage = async ({ params }: { params: ParamsType }) => {
   const book = await getBookById(params.id);
   const review = await getReviewById(params.id);
 
-  const read = (review?.read || new Date()).toLocaleDateString();
+  const read = (review?.read || new Date()).toLocaleDateString("en-US");
 
   return (
     <div id="form">

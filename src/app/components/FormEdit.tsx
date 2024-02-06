@@ -5,7 +5,7 @@ import { addReview, removeReview } from "@/lib/actions";
 
 interface FormType {
   id: string;
-  read: string | null;
+  read: string;
   memo: string | undefined | null;
 }
 
@@ -22,7 +22,7 @@ const FormEdit = ({ src: { id, read, memo } }: { src: FormType }) => {
           id="read"
           name="read"
           className="block bg-gray-100 border-2 border-gray-600 rounded focus:bg-white focus:outline-none focus:border-red-500"
-          defaultValue={read as string}
+          defaultValue={read ? read : ""}
         />
       </div>
       <div className="mb-3">
